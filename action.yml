@@ -1,0 +1,23 @@
+# action.yml
+name: "Notify Job Status"
+description: "Report on deployments mostly"
+
+inputs:
+  job-status:
+    description: "Job status."
+    required: true
+  slack-token:
+    description: "Slack token used to send messages."
+    required: true
+  channel-id:
+    description: "Slack channel id"
+    required: true
+
+runs:
+  using: "docker"
+  image: "Dockerfile"
+  args:
+    - ${{ inputs.job-status }}
+    - ${{ inputs.slack-token }}
+    - ${{ inputs.channel-id }}
+
